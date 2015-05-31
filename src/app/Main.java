@@ -13,6 +13,8 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
+        ConnectionDatabase c = new ConnectionDatabase();
+        c.conectar();
         initComponents();
     }
 

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import oracle.jdbc.driver.OracleDriver;
 
 /**
  *
@@ -16,20 +17,22 @@ public class ConnectionDatabase {
     public static Statement st;
     public static ResultSet rs;
 
-    private static final String DRIVER_NAME = "jdbc:mysql";
-    private static final String HOST = "localhost";
+    private static final String DRIVER_NAME = "jdbc:oracle:thin:";
+    private static final String HOST = "192.168.100.6";
     private static final String PORT = "1521";
-    private static final String DB_NAME = "hr";
-    private static final String USERNAME = "xmluser";
-    private static final String PASSWORD = "1234";
+    private static final String DB_NAME = "orcl";
+    private static final String USERNAME = "oe";
+    private static final String PASSWORD = "12346678";
 
     public void conectar() {
 //Conectar con la base de datos
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
+
             con = DriverManager.getConnection(
-                    "jdbc:oracle:thin:@localhost:1521/xe", "hrxml",
-                    "12345678");
+                    String.format("%s@%s:%s/%s", DRIVER_NAME, HOST, PORT, DB_NAME), 
+                    USERNAME,
+                    PASSWORD);
             st = con.createStatement();
             System.out.println("Conectado a la Base de Datos.");
         } catch (SQLException | ClassNotFoundException e) {
