@@ -80,6 +80,14 @@ public class Main extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         pnlConsulta8 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        fechaDesdeConsulta8 = new datechooser.beans.DateChooserCombo();
+        jLabel18 = new javax.swing.JLabel();
+        fechaHastaConsulta8 = new datechooser.beans.DateChooserCombo();
+        jSeparator8 = new javax.swing.JSeparator();
+        jLabel19 = new javax.swing.JLabel();
+        txtNumeroDias = new javax.swing.JTextField();
         pnlConsulta9 = new javax.swing.JPanel();
         pnlConsulta10 = new javax.swing.JPanel();
 
@@ -119,7 +127,7 @@ public class Main extends javax.swing.JFrame {
 
         jLabel3.setText("Hasta:");
 
-        jLabel4.setText("Numero de productos:");
+        jLabel4.setText("Número de productos:");
 
         javax.swing.GroupLayout pnlConsulta1Layout = new javax.swing.GroupLayout(pnlConsulta1);
         pnlConsulta1.setLayout(pnlConsulta1Layout);
@@ -477,15 +485,58 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Consulta 7", pnlConsulta7);
 
+        jLabel16.setText("Días de la semana con mayor número de ventas en un tiempo determinado.");
+
+        jLabel17.setText("Desde:");
+
+        jLabel18.setText("Hasta:");
+
+        jLabel19.setText("Número de día:");
+
         javax.swing.GroupLayout pnlConsulta8Layout = new javax.swing.GroupLayout(pnlConsulta8);
         pnlConsulta8.setLayout(pnlConsulta8Layout);
         pnlConsulta8Layout.setHorizontalGroup(
             pnlConsulta8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 697, Short.MAX_VALUE)
+            .addGroup(pnlConsulta8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlConsulta8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator8)
+                    .addGroup(pnlConsulta8Layout.createSequentialGroup()
+                        .addGroup(pnlConsulta8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16)
+                            .addGroup(pnlConsulta8Layout.createSequentialGroup()
+                                .addComponent(jLabel18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fechaHastaConsulta8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlConsulta8Layout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fechaDesdeConsulta8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addComponent(jLabel19)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNumeroDias, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 211, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         pnlConsulta8Layout.setVerticalGroup(
             pnlConsulta8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 283, Short.MAX_VALUE)
+            .addGroup(pnlConsulta8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlConsulta8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel17)
+                    .addComponent(fechaDesdeConsulta8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNumeroDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel19))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlConsulta8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel18)
+                    .addComponent(fechaHastaConsulta8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Consulta 8", pnlConsulta8);
@@ -591,9 +642,11 @@ public class Main extends javax.swing.JFrame {
     private datechooser.beans.DateChooserCombo fechaDesdeConsulta1;
     private datechooser.beans.DateChooserCombo fechaDesdeConsulta2;
     private datechooser.beans.DateChooserCombo fechaDesdeConsulta5;
+    private datechooser.beans.DateChooserCombo fechaDesdeConsulta8;
     private datechooser.beans.DateChooserCombo fechaHastaConsulta1;
     private datechooser.beans.DateChooserCombo fechaHastaConsulta2;
     private datechooser.beans.DateChooserCombo fechaHastaConsulta5;
+    private datechooser.beans.DateChooserCombo fechaHastaConsulta8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -601,6 +654,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -619,6 +676,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel pnlConsulta1;
@@ -637,6 +695,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTable tableCountriesC4;
     private javax.swing.JPanel tablePanel;
     private javax.swing.JTable tableProductsC3;
+    private javax.swing.JTextField txtNumeroDias;
     private javax.swing.JTextField txtNumeroProductosC1;
     // End of variables declaration//GEN-END:variables
 }
