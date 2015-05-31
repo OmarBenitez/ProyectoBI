@@ -88,8 +88,19 @@ public class Main extends javax.swing.JFrame {
         jSeparator8 = new javax.swing.JSeparator();
         jLabel19 = new javax.swing.JLabel();
         txtNumeroDias = new javax.swing.JTextField();
+        btnConsulta8 = new javax.swing.JButton();
         pnlConsulta9 = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        jSeparator9 = new javax.swing.JSeparator();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tableProductsC9 = new javax.swing.JTable();
+        btnConsulta9 = new javax.swing.JButton();
         pnlConsulta10 = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
+        jSeparator10 = new javax.swing.JSeparator();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tableCountriesC10 = new javax.swing.JTable();
+        btnConsulta11 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -493,6 +504,8 @@ public class Main extends javax.swing.JFrame {
 
         jLabel19.setText("Número de día:");
 
+        btnConsulta8.setText("Consultar");
+
         javax.swing.GroupLayout pnlConsulta8Layout = new javax.swing.GroupLayout(pnlConsulta8);
         pnlConsulta8.setLayout(pnlConsulta8Layout);
         pnlConsulta8Layout.setHorizontalGroup(
@@ -518,6 +531,9 @@ public class Main extends javax.swing.JFrame {
                                 .addComponent(txtNumeroDias, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 211, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlConsulta8Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnConsulta8))
         );
         pnlConsulta8Layout.setVerticalGroup(
             pnlConsulta8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -536,33 +552,108 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(pnlConsulta8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel18)
                     .addComponent(fechaHastaConsulta8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                .addComponent(btnConsulta8))
         );
 
         jTabbedPane1.addTab("Consulta 8", pnlConsulta8);
+
+        jLabel20.setText("Cuanto tiempo se queda inexistente un producto.\t");
+
+        tableProductsC9.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tableProductsC9.setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        jScrollPane4.setViewportView(tableProductsC9);
+
+        btnConsulta9.setText("Consultar");
 
         javax.swing.GroupLayout pnlConsulta9Layout = new javax.swing.GroupLayout(pnlConsulta9);
         pnlConsulta9.setLayout(pnlConsulta9Layout);
         pnlConsulta9Layout.setHorizontalGroup(
             pnlConsulta9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 697, Short.MAX_VALUE)
+            .addGroup(pnlConsulta9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlConsulta9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator9)
+                    .addGroup(pnlConsulta9Layout.createSequentialGroup()
+                        .addComponent(jLabel20)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlConsulta9Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnConsulta9))
         );
         pnlConsulta9Layout.setVerticalGroup(
             pnlConsulta9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 283, Short.MAX_VALUE)
+            .addGroup(pnlConsulta9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnConsulta9))
         );
 
         jTabbedPane1.addTab("Consulta 9", pnlConsulta9);
+
+        jLabel21.setText("Cantidad de ventas por país en un tiempo determinado.");
+
+        tableCountriesC10.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tableCountriesC10.setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        jScrollPane5.setViewportView(tableCountriesC10);
+
+        btnConsulta11.setText("Consultar");
 
         javax.swing.GroupLayout pnlConsulta10Layout = new javax.swing.GroupLayout(pnlConsulta10);
         pnlConsulta10.setLayout(pnlConsulta10Layout);
         pnlConsulta10Layout.setHorizontalGroup(
             pnlConsulta10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 697, Short.MAX_VALUE)
+            .addGroup(pnlConsulta10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlConsulta10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator10)
+                    .addGroup(pnlConsulta10Layout.createSequentialGroup()
+                        .addComponent(jLabel21)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlConsulta10Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnConsulta11))
         );
         pnlConsulta10Layout.setVerticalGroup(
             pnlConsulta10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 283, Short.MAX_VALUE)
+            .addGroup(pnlConsulta10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnConsulta11))
         );
 
         jTabbedPane1.addTab("Consulta 10", pnlConsulta10);
@@ -633,12 +724,15 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConsulta1;
+    private javax.swing.JButton btnConsulta11;
     private javax.swing.JButton btnConsulta2;
     private javax.swing.JButton btnConsulta3;
     private javax.swing.JButton btnConsulta4;
     private javax.swing.JButton btnConsulta5;
     private javax.swing.JButton btnConsulta6;
     private javax.swing.JButton btnConsulta7;
+    private javax.swing.JButton btnConsulta8;
+    private javax.swing.JButton btnConsulta9;
     private datechooser.beans.DateChooserCombo fechaDesdeConsulta1;
     private datechooser.beans.DateChooserCombo fechaDesdeConsulta2;
     private datechooser.beans.DateChooserCombo fechaDesdeConsulta5;
@@ -659,6 +753,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -669,7 +765,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
@@ -677,6 +776,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel pnlConsulta1;
@@ -692,9 +792,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrollTablePanel;
     private javax.swing.JTable tableContent;
     private javax.swing.JTable tableCostumersC6;
+    private javax.swing.JTable tableCountriesC10;
     private javax.swing.JTable tableCountriesC4;
     private javax.swing.JPanel tablePanel;
     private javax.swing.JTable tableProductsC3;
+    private javax.swing.JTable tableProductsC9;
     private javax.swing.JTextField txtNumeroDias;
     private javax.swing.JTextField txtNumeroProductosC1;
     // End of variables declaration//GEN-END:variables
