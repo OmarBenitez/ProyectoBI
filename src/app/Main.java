@@ -1,6 +1,7 @@
 package app;
 
 import java.util.Properties;
+import javax.swing.tree.TreeSelectionModel;
 
 /**
  *
@@ -47,6 +48,11 @@ public class Main extends javax.swing.JFrame {
         fechaHastaConsulta2 = new datechooser.beans.DateChooserCombo();
         btnConsulta2 = new javax.swing.JButton();
         pnlConsulta3 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableProductsC3 = new javax.swing.JTable();
+        btnConsulta3 = new javax.swing.JButton();
         pnlConsulta4 = new javax.swing.JPanel();
         pnlConsulta5 = new javax.swing.JPanel();
         pnlConsulta6 = new javax.swing.JPanel();
@@ -80,7 +86,7 @@ public class Main extends javax.swing.JFrame {
         );
         tablePanelLayout.setVerticalGroup(
             tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+            .addComponent(scrollTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
         );
 
         jLabel1.setText("Los primeros productos mas vendidos de una fecha a otra");
@@ -139,7 +145,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(pnlConsulta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(fechaHastaConsulta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
                 .addComponent(btnConsulta1))
         );
 
@@ -198,21 +204,59 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(pnlConsulta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(fechaHastaConsulta2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
                 .addComponent(btnConsulta2))
         );
 
         jTabbedPane1.addTab("Consulta 2", pnlConsulta2);
 
+        jLabel8.setText("Clientes con más compras de un producto.");
+
+        tableProductsC3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tableProductsC3.setRowSelectionAllowed(true);
+        tableProductsC3.setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        jScrollPane1.setViewportView(tableProductsC3);
+
+        btnConsulta3.setText("Consultar");
+
         javax.swing.GroupLayout pnlConsulta3Layout = new javax.swing.GroupLayout(pnlConsulta3);
         pnlConsulta3.setLayout(pnlConsulta3Layout);
         pnlConsulta3Layout.setHorizontalGroup(
             pnlConsulta3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 703, Short.MAX_VALUE)
+            .addGroup(pnlConsulta3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlConsulta3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator3)
+                    .addGroup(pnlConsulta3Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlConsulta3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnConsulta3))
         );
         pnlConsulta3Layout.setVerticalGroup(
             pnlConsulta3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 157, Short.MAX_VALUE)
+            .addGroup(pnlConsulta3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnConsulta3))
         );
 
         jTabbedPane1.addTab("Consulta 3", pnlConsulta3);
@@ -225,7 +269,7 @@ public class Main extends javax.swing.JFrame {
         );
         pnlConsulta4Layout.setVerticalGroup(
             pnlConsulta4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 157, Short.MAX_VALUE)
+            .addGap(0, 283, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Consulta 4", pnlConsulta4);
@@ -238,7 +282,7 @@ public class Main extends javax.swing.JFrame {
         );
         pnlConsulta5Layout.setVerticalGroup(
             pnlConsulta5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 157, Short.MAX_VALUE)
+            .addGap(0, 283, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Consulta 5", pnlConsulta5);
@@ -251,7 +295,7 @@ public class Main extends javax.swing.JFrame {
         );
         pnlConsulta6Layout.setVerticalGroup(
             pnlConsulta6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 157, Short.MAX_VALUE)
+            .addGap(0, 283, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Consulta 6", pnlConsulta6);
@@ -264,7 +308,7 @@ public class Main extends javax.swing.JFrame {
         );
         pnlConsulta7Layout.setVerticalGroup(
             pnlConsulta7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 157, Short.MAX_VALUE)
+            .addGap(0, 283, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Consulta 7", pnlConsulta7);
@@ -277,7 +321,7 @@ public class Main extends javax.swing.JFrame {
         );
         pnlConsulta8Layout.setVerticalGroup(
             pnlConsulta8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 157, Short.MAX_VALUE)
+            .addGap(0, 283, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Consulta 8", pnlConsulta8);
@@ -290,7 +334,7 @@ public class Main extends javax.swing.JFrame {
         );
         pnlConsulta9Layout.setVerticalGroup(
             pnlConsulta9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 157, Short.MAX_VALUE)
+            .addGap(0, 283, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Consulta 9", pnlConsulta9);
@@ -303,7 +347,7 @@ public class Main extends javax.swing.JFrame {
         );
         pnlConsulta10Layout.setVerticalGroup(
             pnlConsulta10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 157, Short.MAX_VALUE)
+            .addGap(0, 283, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Consulta 10", pnlConsulta10);
@@ -324,7 +368,7 @@ public class Main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -375,6 +419,7 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConsulta1;
     private javax.swing.JButton btnConsulta2;
+    private javax.swing.JButton btnConsulta3;
     private datechooser.beans.DateChooserCombo fechaDesdeConsulta1;
     private datechooser.beans.DateChooserCombo fechaDesdeConsulta2;
     private datechooser.beans.DateChooserCombo fechaHastaConsulta1;
@@ -386,8 +431,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel pnlConsulta1;
     private javax.swing.JPanel pnlConsulta10;
@@ -402,6 +450,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrollTablePanel;
     private javax.swing.JTable tableContent;
     private javax.swing.JPanel tablePanel;
+    private javax.swing.JTable tableProductsC3;
     private javax.swing.JTextField txtNumeroProductosC1;
     // End of variables declaration//GEN-END:variables
 }
