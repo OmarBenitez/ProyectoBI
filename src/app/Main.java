@@ -60,7 +60,19 @@ public class Main extends javax.swing.JFrame {
         tableCountriesC4 = new javax.swing.JTable();
         btnConsulta4 = new javax.swing.JButton();
         pnlConsulta5 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        fechaDesdeConsulta5 = new datechooser.beans.DateChooserCombo();
+        jLabel12 = new javax.swing.JLabel();
+        fechaHastaConsulta5 = new datechooser.beans.DateChooserCombo();
+        jSeparator6 = new javax.swing.JSeparator();
+        btnConsulta5 = new javax.swing.JButton();
         pnlConsulta6 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tableCostumersC6 = new javax.swing.JTable();
+        btnConsulta6 = new javax.swing.JButton();
         pnlConsulta7 = new javax.swing.JPanel();
         pnlConsulta8 = new javax.swing.JPanel();
         pnlConsulta9 = new javax.swing.JPanel();
@@ -112,9 +124,6 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlConsulta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlConsulta1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnConsulta1))
                     .addGroup(pnlConsulta1Layout.createSequentialGroup()
                         .addGroup(pnlConsulta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -130,8 +139,11 @@ public class Main extends javax.swing.JFrame {
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtNumeroProductosC1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 200, Short.MAX_VALUE)))
+                        .addGap(0, 68, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlConsulta1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnConsulta1))
         );
         pnlConsulta1Layout.setVerticalGroup(
             pnlConsulta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,11 +200,11 @@ public class Main extends javax.swing.JFrame {
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(fechaHastaConsulta2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 329, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlConsulta2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnConsulta2)))
+                        .addGap(0, 246, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlConsulta2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnConsulta2))
         );
         pnlConsulta2Layout.setVerticalGroup(
             pnlConsulta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,20 +299,18 @@ public class Main extends javax.swing.JFrame {
         pnlConsulta4.setLayout(pnlConsulta4Layout);
         pnlConsulta4Layout.setHorizontalGroup(
             pnlConsulta4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlConsulta4Layout.createSequentialGroup()
-                .addGroup(pnlConsulta4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator4)
-                    .addGroup(pnlConsulta4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pnlConsulta4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlConsulta4Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE))))
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlConsulta4Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnConsulta4))
+            .addGroup(pnlConsulta4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlConsulta4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator4)
+                    .addGroup(pnlConsulta4Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE))
+                .addContainerGap())
         );
         pnlConsulta4Layout.setVerticalGroup(
             pnlConsulta4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,28 +327,106 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Consulta 4", pnlConsulta4);
 
+        jLabel10.setText("Clientes con mas ordenes en un determinado tiempo.");
+
+        jLabel11.setText("Desde:");
+
+        jLabel12.setText("Hasta:");
+
+        btnConsulta5.setText("Consultar");
+
         javax.swing.GroupLayout pnlConsulta5Layout = new javax.swing.GroupLayout(pnlConsulta5);
         pnlConsulta5.setLayout(pnlConsulta5Layout);
         pnlConsulta5Layout.setHorizontalGroup(
             pnlConsulta5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 703, Short.MAX_VALUE)
+            .addGroup(pnlConsulta5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlConsulta5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator6)
+                    .addGroup(pnlConsulta5Layout.createSequentialGroup()
+                        .addGroup(pnlConsulta5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addGroup(pnlConsulta5Layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fechaHastaConsulta5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlConsulta5Layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fechaDesdeConsulta5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 236, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlConsulta5Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnConsulta5))
         );
         pnlConsulta5Layout.setVerticalGroup(
             pnlConsulta5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 283, Short.MAX_VALUE)
+            .addGroup(pnlConsulta5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlConsulta5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
+                    .addComponent(fechaDesdeConsulta5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlConsulta5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12)
+                    .addComponent(fechaHastaConsulta5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addComponent(btnConsulta5))
         );
 
         jTabbedPane1.addTab("Consulta 5", pnlConsulta5);
+
+        jLabel13.setText("Lapso de tiempo de un cliente en pedir un producto.");
+
+        tableCostumersC6.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(tableCostumersC6);
+
+        btnConsulta6.setText("Consultar");
 
         javax.swing.GroupLayout pnlConsulta6Layout = new javax.swing.GroupLayout(pnlConsulta6);
         pnlConsulta6.setLayout(pnlConsulta6Layout);
         pnlConsulta6Layout.setHorizontalGroup(
             pnlConsulta6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 703, Short.MAX_VALUE)
+            .addGroup(pnlConsulta6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlConsulta6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlConsulta6Layout.createSequentialGroup()
+                        .addGroup(pnlConsulta6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13)
+                            .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlConsulta6Layout.createSequentialGroup()
+                        .addGap(592, 592, 592)
+                        .addComponent(btnConsulta6))
+                    .addComponent(jScrollPane3))
+                .addContainerGap())
         );
         pnlConsulta6Layout.setVerticalGroup(
             pnlConsulta6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 283, Short.MAX_VALUE)
+            .addGroup(pnlConsulta6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addComponent(btnConsulta6))
         );
 
         jTabbedPane1.addTab("Consulta 6", pnlConsulta6);
@@ -464,11 +552,19 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton btnConsulta2;
     private javax.swing.JButton btnConsulta3;
     private javax.swing.JButton btnConsulta4;
+    private javax.swing.JButton btnConsulta5;
+    private javax.swing.JButton btnConsulta6;
     private datechooser.beans.DateChooserCombo fechaDesdeConsulta1;
     private datechooser.beans.DateChooserCombo fechaDesdeConsulta2;
+    private datechooser.beans.DateChooserCombo fechaDesdeConsulta5;
     private datechooser.beans.DateChooserCombo fechaHastaConsulta1;
     private datechooser.beans.DateChooserCombo fechaHastaConsulta2;
+    private datechooser.beans.DateChooserCombo fechaHastaConsulta5;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -479,10 +575,13 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel pnlConsulta1;
     private javax.swing.JPanel pnlConsulta10;
@@ -496,6 +595,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel pnlConsulta9;
     private javax.swing.JScrollPane scrollTablePanel;
     private javax.swing.JTable tableContent;
+    private javax.swing.JTable tableCostumersC6;
     private javax.swing.JTable tableCountriesC4;
     private javax.swing.JPanel tablePanel;
     private javax.swing.JTable tableProductsC3;
