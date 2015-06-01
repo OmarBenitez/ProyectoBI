@@ -92,13 +92,13 @@ public class ConnectionDatabase {
     public ResultSet getConsulta1(Date desde, Date hasta, Integer limit) throws SQLException {
         int dummyYear = 2007;
         return st.executeQuery(
-                String.format("SELECT pr.PRODUCT_NAME, COUNT(pr.PRODUCT_ID), SUM(ve.SALE_TOTAL) TOTAL_VENDIDO \n"
-                        + "FROM PRODUCTOS pr\n"
-                        + "FULL OUTER JOIN TIEMPO ti\n"
-                        + "FULL OUTER JOIN VENTAS ve\n"
-                        + "ON ti.FECHA = ve.FECHA\n"
-                        + "ON pr.PRODUCT_ID = ve.PRODUCT_ID\n"
-                        + "WHERE ti.YEAR_NUMBER = %d\n"
+                String.format("SELECT pr.PRODUCT_NAME, COUNT(pr.PRODUCT_ID), SUM(ve.SALE_TOTAL) TOTAL_VENDIDO  "
+                        + "FROM PRODUCTOS pr "
+                        + "FULL OUTER JOIN TIEMPO ti "
+                        + "FULL OUTER JOIN VENTAS ve "
+                        + "ON ti.FECHA = ve.FECHA "
+                        + "ON pr.PRODUCT_ID = ve.PRODUCT_ID "
+                        + "WHERE ti.YEAR_NUMBER = %d "
                         + "GROUP BY ROLLUP (pr.PRODUCT_NAME)",
                         dummyYear
                 )
@@ -106,7 +106,7 @@ public class ConnectionDatabase {
     }
 
     /**
-     * Categoria de productos mas vendidos de una fecha a otra.
+     * Categoria de productos más vendidos de una fecha a otra.
      *
      * @param desde
      * @param hasta
@@ -114,18 +114,39 @@ public class ConnectionDatabase {
      * @throws SQLException
      */
     public ResultSet getConsulta2(Date desde, Date hasta) throws SQLException {
-        return st.executeQuery("SELECT * FROM employees");
+
+        SimpleDateFormat sdf = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
+
+        return st.executeQuery(String.format("SELECT pr.CATEGORY, COUNT(ve.PRODUCT_ID) "
+                + "FROM VENTAS ve "
+                + "JOIN PRODUCTOS pr "
+                + "ON ve.PRODUCT_ID = pr.PRODUCT_ID "
+                + "WHERE TO_DATE(ve.FECHA, '%s') BETWEEN TO_DATE('%s', '%s') "
+                + "AND TO_DATE('%s', '%s') "
+                + "GROUP BY GROUPING SETS(pr.CATEGORY) "
+                + "ORDER BY COUNT(ve.PRODUCT_ID) DESC",
+                DEFAULT_DATE_FORMAT,
+                sdf.format(desde),
+                DEFAULT_DATE_FORMAT,
+                sdf.format(hasta),
+                DEFAULT_DATE_FORMAT));
     }
 
     /**
-     * Clientes con más compras de un producto.
+     * Clientes con más compras de un producto por país.
      *
      * @param product_id
      * @return
      * @throws SQLException
      */
     ResultSet getConsulta3(Object product_id) throws SQLException {
-        return st.executeQuery("SELECT * FROM productos");
+        return st.executeQuery(String.format("SELECT cl.CLIENT_NAME, cl.CLIENT_COUNTRY, COUNT(ve.PRODUCT_ID) "
+                + "FROM VENTAS ve "
+                + "JOIN CLIENTES cl "
+                + "ON ve.CLIENT_ID = cl.CLIENT_ID "
+                + "WHERE ve.PRODUCT_ID = %s "
+                + "GROUP BY CUBE(cl.CLIENT_NAME, cl.CLIENT_COUNTRY)",
+                product_id));
     }
 
     /**
@@ -136,7 +157,15 @@ public class ConnectionDatabase {
      * @throws SQLException
      */
     ResultSet getConsulta4(Object country) throws SQLException {
-        return st.executeQuery("SELECT * FROM productos");
+        return st.executeQuery(String.format("SELECT pr.PRODUCT_NAME PRODUCTO, COUNT(pr.PRODUCT_ID) CANTIDAD, cl.CLIENT_COUNTRY "
+                + "FROM PRODUCTOS pr "
+                + "JOIN VENTAS ve "
+                + "ON ve.PRODUCT_ID = pr.PRODUCT_ID "
+                + "JOIN CLIENTES cl "
+                + "ON cl.CLIENT_ID = ve.CLIENT_ID "
+                + "WHERE cl.CLIENT_COUNTRY like '%s' "
+                + "GROUP BY ROLLUP (cl.CLIENT_COUNTRY, pr.PRODUCT_NAME) "
+                + "ORDER BY COUNT(pr.PRODUCT_ID) DESC", country));
     }
 
     /**
@@ -151,12 +180,12 @@ public class ConnectionDatabase {
 
         SimpleDateFormat sdf = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
 
-        return st.executeQuery(String.format("SELECT CLIENT_NAME, COUNT(SALE_ID)\n"
-                + "FROM VENTAS ve\n"
-                + "JOIN CLIENTES cl\n"
-                + "ON ve.CLIENT_ID = cl.CLIENT_ID\n"
-                + "WHERE TO_DATE(ve.FECHA, '%s') BETWEEN TO_DATE('%s', '%s')\n"
-                + "AND TO_DATE('%s', '%s')\n"
+        return st.executeQuery(String.format("SELECT CLIENT_NAME, COUNT(SALE_ID) "
+                + "FROM VENTAS ve "
+                + "JOIN CLIENTES cl "
+                + "ON ve.CLIENT_ID = cl.CLIENT_ID "
+                + "WHERE TO_DATE(ve.FECHA, '%s') BETWEEN TO_DATE('%s', '%s') "
+                + "AND TO_DATE('%s', '%s') "
                 + "GROUP BY GROUPING SETS(CLIENT_NAME)",
                 DEFAULT_DATE_FORMAT,
                 sdf.format(desde),
@@ -174,13 +203,13 @@ public class ConnectionDatabase {
      */
     ResultSet getConsulta6(Object costumer_id) throws SQLException {
         //No recibe parámetros
-        return st.executeQuery(String.format("SELECT cl.CLIENT_NAME, SUM(ve.SALE_TOTAL) TOTAL_VENDIDO, \n"
-                + "LAG (cl.CLIENT_NAME) OVER (ORDER BY SUM(ve.SALE_TOTAL)) AS VENDEDOR_DESEMPEÑO_MENOR, \n"
-                + "LEAD (cl.CLIENT_NAME) OVER (ORDER BY SUM(ve.SALE_TOTAL)) AS VENDEDOR_DESEMPEÑO_MAYOR\n"
-                + "FROM VENTAS ve\n"
-                + "JOIN CLIENTES cl\n"
-                + "ON ve.CLIENT_ID = cl.CLIENT_ID\n"
-                + "GROUP BY cl.CLIENT_NAME;"));
+        return st.executeQuery(String.format("SELECT cl.CLIENT_NAME, SUM(ve.SALE_TOTAL) TOTAL_VENDIDO,  "
+                + "LAG (cl.CLIENT_NAME) OVER (ORDER BY SUM(ve.SALE_TOTAL)) AS VENDEDOR_DESEMPEÑO_MENOR,  "
+                + "LEAD (cl.CLIENT_NAME) OVER (ORDER BY SUM(ve.SALE_TOTAL)) AS VENDEDOR_DESEMPEÑO_MAYOR "
+                + "FROM VENTAS ve "
+                + "JOIN CLIENTES cl "
+                + "ON ve.CLIENT_ID = cl.CLIENT_ID "
+                + "GROUP BY cl.CLIENT_NAME"));
     }
 
     /**
@@ -191,14 +220,14 @@ public class ConnectionDatabase {
      * @throws SQLException
      */
     ResultSet getConsulta7(Object numAlmacen) throws SQLException {
-        return st.executeQuery(String.format("SELECT al.WAREHOUSE_NAME, pr.PRODUCT_NAME, COUNT(ve.PRODUCT_ID)\n"
-                + "FROM VENTAS ve\n"
-                + "JOIN PRODUCTOS pr\n"
-                + "ON ve.PRODUCT_ID = pr.PRODUCT_ID\n"
-                + "JOIN ALMACENES al\n"
-                + "ON al.WAREHOUSE_ID = al.WAREHOUSE_ID\n"
-                + "WHERE al.WAREHOUSE_ID = %s\n"
-                + "GROUP BY GROUPING SETS(al.WAREHOUSE_NAME, pr.PRODUCT_NAME)\n"
+        return st.executeQuery(String.format("SELECT al.WAREHOUSE_NAME, pr.PRODUCT_NAME, COUNT(ve.PRODUCT_ID) "
+                + "FROM VENTAS ve "
+                + "JOIN PRODUCTOS pr "
+                + "ON ve.PRODUCT_ID = pr.PRODUCT_ID "
+                + "JOIN ALMACENES al "
+                + "ON al.WAREHOUSE_ID = al.WAREHOUSE_ID "
+                + "WHERE al.WAREHOUSE_ID = %s "
+                + "GROUP BY GROUPING SETS(al.WAREHOUSE_NAME, pr.PRODUCT_NAME) "
                 + "ORDER BY COUNT(ve.PRODUCT_ID) DESC", numAlmacen));
     }
 
@@ -213,13 +242,13 @@ public class ConnectionDatabase {
      */
     ResultSet getConsulta8(Date desde, Date hasta, Integer day) throws SQLException {
         String dummyMonth = "Ënero";
-        return st.executeQuery(String.format("SELECT cl.CLIENT_NAME, SUM(ve.SALE_TOTAL) TOTAL_VENTAS, ti.MONTH_NAME as MES\n"
-                + "FROM TIEMPO ti\n"
-                + "JOIN VENTAS ve\n"
-                + "ON ve.FECHA = ti.FECHA\n"
-                + "JOIN CLIENTES cl\n"
-                + "ON ve.CLIENT_ID = cl.CLIENT_ID\n"
-                + "WHERE ti.MONTH_NAME LIKE '%s'\n"
+        return st.executeQuery(String.format("SELECT cl.CLIENT_NAME, SUM(ve.SALE_TOTAL) TOTAL_VENTAS, ti.MONTH_NAME as MES "
+                + "FROM TIEMPO ti "
+                + "JOIN VENTAS ve "
+                + "ON ve.FECHA = ti.FECHA "
+                + "JOIN CLIENTES cl "
+                + "ON ve.CLIENT_ID = cl.CLIENT_ID "
+                + "WHERE ti.MONTH_NAME LIKE '%s' "
                 + "GROUP BY GROUPING SETS ((cl.CLIENT_NAME, ti.MONTH_NAME))", dummyMonth));
     }
 
@@ -231,7 +260,15 @@ public class ConnectionDatabase {
      * @throws SQLException
      */
     ResultSet getConsulta9(Object product_id) throws SQLException {
-        return st.executeQuery("SELECT * FROM productos");
+        return st.executeQuery(String.format("SELECT pr.CATEGORY, COUNT(ve.PRODUCT_ID) "
+                + "FROM VENTAS ve "
+                + "JOIN PRODUCTOS pr "
+                + "ON ve.PRODUCT_ID = pr.PRODUCT_ID "
+                + "JOIN CLIENTES cl  "
+                + "ON ve.CLIENT_ID = cl.CLIENT_ID "
+                + "WHERE cl.CLIENT_COUNTRY LIKE '%s' "
+                + "GROUP BY GROUPING SETS(pr.CATEGORY) "
+                + "ORDER BY COUNT(ve.PRODUCT_ID) DESC", product_id));
     }
 
     /**
