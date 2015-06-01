@@ -1,6 +1,15 @@
 package app;
 
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Properties;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.TreeSelectionModel;
 
 /**
@@ -8,14 +17,32 @@ import javax.swing.tree.TreeSelectionModel;
  * @author Team Burton
  */
 public class Main extends javax.swing.JFrame {
-    
+
+    ConnectionDatabase conn;
+
     /**
      * Creates new form Main
      */
     public Main() {
-        ConnectionDatabase c = new ConnectionDatabase();
-        c.conectar();
-        initComponents();
+        try {
+            conn = new ConnectionDatabase();
+            conn.conectar();
+            initComponents();
+
+            ResultSet prods = conn.getProductos();
+            tableProductsC3.setModel(buildTableModel(prods));
+            tableProductsC9.setModel(buildTableModel(prods));
+
+            ResultSet countries = conn.getCountries();
+            tableCountriesC4.setModel(buildTableModel(countries));
+            tableCountriesC10.setModel(buildTableModel(countries));
+            
+            ResultSet costumers = conn.getCostumers();
+            tableCostumersC6.setModel(buildTableModel(costumers));
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -80,7 +107,7 @@ public class Main extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
         jLabel15 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNumAlmacenC6 = new javax.swing.JTextField();
         pnlConsulta8 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -89,7 +116,7 @@ public class Main extends javax.swing.JFrame {
         fechaHastaConsulta8 = new datechooser.beans.DateChooserCombo();
         jSeparator8 = new javax.swing.JSeparator();
         jLabel19 = new javax.swing.JLabel();
-        txtNumeroDias = new javax.swing.JTextField();
+        txtNumeroDiasC8 = new javax.swing.JTextField();
         btnConsulta8 = new javax.swing.JButton();
         pnlConsulta9 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
@@ -135,6 +162,11 @@ public class Main extends javax.swing.JFrame {
         jLabel1.setText("Los primeros productos mas vendidos de una fecha a otra");
 
         btnConsulta1.setText("Consultar");
+        btnConsulta1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsulta1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Desde:");
 
@@ -266,11 +298,15 @@ public class Main extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tableProductsC3.setRowSelectionAllowed(true);
         tableProductsC3.setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         jScrollPane1.setViewportView(tableProductsC3);
 
         btnConsulta3.setText("Consultar");
+        btnConsulta3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsulta3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlConsulta3Layout = new javax.swing.GroupLayout(pnlConsulta3);
         pnlConsulta3.setLayout(pnlConsulta3Layout);
@@ -320,6 +356,11 @@ public class Main extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tableCountriesC4);
 
         btnConsulta4.setText("Consultar");
+        btnConsulta4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsulta4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlConsulta4Layout = new javax.swing.GroupLayout(pnlConsulta4);
         pnlConsulta4.setLayout(pnlConsulta4Layout);
@@ -360,6 +401,11 @@ public class Main extends javax.swing.JFrame {
         jLabel12.setText("Hasta:");
 
         btnConsulta5.setText("Consultar");
+        btnConsulta5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsulta5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlConsulta5Layout = new javax.swing.GroupLayout(pnlConsulta5);
         pnlConsulta5.setLayout(pnlConsulta5Layout);
@@ -423,6 +469,11 @@ public class Main extends javax.swing.JFrame {
         jScrollPane3.setViewportView(tableCostumersC6);
 
         btnConsulta6.setText("Consultar");
+        btnConsulta6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsulta6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlConsulta6Layout = new javax.swing.GroupLayout(pnlConsulta6);
         pnlConsulta6.setLayout(pnlConsulta6Layout);
@@ -458,6 +509,11 @@ public class Main extends javax.swing.JFrame {
         jTabbedPane1.addTab("Consulta 6", pnlConsulta6);
 
         btnConsulta7.setText("Consultar");
+        btnConsulta7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsulta7ActionPerformed(evt);
+            }
+        });
 
         jLabel14.setText("Producto que se queda mas tiempo en el almacén.");
 
@@ -478,7 +534,7 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(pnlConsulta7Layout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtNumAlmacenC6, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlConsulta7Layout.setVerticalGroup(
@@ -491,7 +547,7 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlConsulta7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNumAlmacenC6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
                 .addComponent(btnConsulta7))
         );
@@ -507,6 +563,11 @@ public class Main extends javax.swing.JFrame {
         jLabel19.setText("Número de día:");
 
         btnConsulta8.setText("Consultar");
+        btnConsulta8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsulta8ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlConsulta8Layout = new javax.swing.GroupLayout(pnlConsulta8);
         pnlConsulta8.setLayout(pnlConsulta8Layout);
@@ -530,7 +591,7 @@ public class Main extends javax.swing.JFrame {
                                 .addGap(31, 31, 31)
                                 .addComponent(jLabel19)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNumeroDias, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtNumeroDiasC8, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 211, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlConsulta8Layout.createSequentialGroup()
@@ -548,7 +609,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(pnlConsulta8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel17)
                     .addComponent(fechaDesdeConsulta8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNumeroDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNumeroDiasC8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlConsulta8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -577,6 +638,11 @@ public class Main extends javax.swing.JFrame {
         jScrollPane4.setViewportView(tableProductsC9);
 
         btnConsulta9.setText("Consultar");
+        btnConsulta9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsulta9ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlConsulta9Layout = new javax.swing.GroupLayout(pnlConsulta9);
         pnlConsulta9.setLayout(pnlConsulta9Layout);
@@ -627,6 +693,11 @@ public class Main extends javax.swing.JFrame {
         jScrollPane5.setViewportView(tableCountriesC10);
 
         btnConsulta11.setText("Consultar");
+        btnConsulta11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsulta11ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlConsulta10Layout = new javax.swing.GroupLayout(pnlConsulta10);
         pnlConsulta10.setLayout(pnlConsulta10Layout);
@@ -685,9 +756,127 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnConsulta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsulta1ActionPerformed
+        try {
+            ResultSet r = conn.getConsulta1(
+                    new Date(fechaDesdeConsulta1.getCurrent().getTime().getTime()),
+                    new Date(fechaHastaConsulta1.getCurrent().getTime().getTime()),
+                    Integer.parseInt(txtNumeroProductosC1.getText()));
+            tableContent.setModel(buildTableModel(r));
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnConsulta1ActionPerformed
+
     private void btnConsulta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsulta2ActionPerformed
-        // TODO add your handling code here:
+
+        try {
+            ResultSet r;
+            r = conn.getConsulta2(
+                    new Date(fechaDesdeConsulta2.getCurrent().getTime().getTime()),
+                    new Date(fechaHastaConsulta2.getCurrent().getTime().getTime()));
+            tableContent.setModel(buildTableModel(r));
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_btnConsulta2ActionPerformed
+
+    private void btnConsulta3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsulta3ActionPerformed
+        try {
+            if (tableProductsC3.getSelectedRow() != -1) {
+                ResultSet r = conn.getConsulta3(
+                        tableProductsC3.getValueAt(tableProductsC3.getSelectedRow(), 0)
+                );
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnConsulta3ActionPerformed
+
+    private void btnConsulta4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsulta4ActionPerformed
+        try {
+            if (tableCountriesC4.getSelectedRow() != -1) {
+                ResultSet r = conn.getConsulta4(
+                        tableCountriesC4.getValueAt(tableCountriesC4.getSelectedRow(), 0)
+                );
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnConsulta4ActionPerformed
+
+    private void btnConsulta5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsulta5ActionPerformed
+        try {
+            ResultSet r;
+            r = conn.getConsulta5(
+                    new Date(fechaDesdeConsulta5.getCurrent().getTime().getTime()),
+                    new Date(fechaHastaConsulta5.getCurrent().getTime().getTime()));
+            tableContent.setModel(buildTableModel(r));
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnConsulta5ActionPerformed
+
+    private void btnConsulta6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsulta6ActionPerformed
+        try {
+            if (tableCostumersC6.getSelectedRow() != -1) {
+                ResultSet r = conn.getConsulta6(
+                        tableCostumersC6.getValueAt(tableCostumersC6.getSelectedRow(), 0)
+                );
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnConsulta6ActionPerformed
+
+    private void btnConsulta7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsulta7ActionPerformed
+        try {
+            if (!txtNumAlmacenC6.getText().equalsIgnoreCase("")) {
+                ResultSet r = conn.getConsulta7(
+                        Integer.parseInt(txtNumAlmacenC6.getText())
+                );
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnConsulta7ActionPerformed
+
+    private void btnConsulta8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsulta8ActionPerformed
+        try {
+            ResultSet r = conn.getConsulta8(
+                    new Date(fechaDesdeConsulta8.getCurrent().getTime().getTime()),
+                    new Date(fechaHastaConsulta8.getCurrent().getTime().getTime()),
+                    Integer.parseInt(txtNumeroDiasC8.getText()));
+            tableContent.setModel(buildTableModel(r));
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnConsulta8ActionPerformed
+
+    private void btnConsulta9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsulta9ActionPerformed
+        try {
+            if (tableProductsC9.getSelectedRow() != -1) {
+                ResultSet r = conn.getConsulta9(
+                        tableProductsC9.getValueAt(tableProductsC9.getSelectedRow(), 0)
+                );
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnConsulta9ActionPerformed
+
+    private void btnConsulta11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsulta11ActionPerformed
+        try {
+            if (tableCountriesC10.getSelectedRow() != -1) {
+                ResultSet r = conn.getConsulta10(
+                        tableCountriesC10.getValueAt(tableCountriesC10.getSelectedRow(), 0)
+                );
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnConsulta11ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -722,6 +911,39 @@ public class Main extends javax.swing.JFrame {
                 new Main().setVisible(true);
             }
         });
+    }
+
+    /**
+     * Construye el TableModel a partir de un ResultSet de la base de datos.
+     * 
+     * @param rs
+     * @return
+     * @throws SQLException 
+     */
+    public static DefaultTableModel buildTableModel(ResultSet rs)
+            throws SQLException {
+
+        ResultSetMetaData metaData = rs.getMetaData();
+
+        // names of columns
+        Vector<String> columnNames = new Vector<String>();
+        int columnCount = metaData.getColumnCount();
+        for (int column = 1; column <= columnCount; column++) {
+            columnNames.add(metaData.getColumnName(column));
+        }
+
+        // data of the table
+        Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+        while (rs.next()) {
+            Vector<Object> vector = new Vector<Object>();
+            for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+                vector.add(rs.getObject(columnIndex));
+            }
+            data.add(vector);
+        }
+
+        return new DefaultTableModel(data, columnNames);
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -780,7 +1002,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel pnlConsulta1;
     private javax.swing.JPanel pnlConsulta10;
     private javax.swing.JPanel pnlConsulta2;
@@ -799,7 +1020,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel tablePanel;
     private javax.swing.JTable tableProductsC3;
     private javax.swing.JTable tableProductsC9;
-    private javax.swing.JTextField txtNumeroDias;
+    private javax.swing.JTextField txtNumAlmacenC6;
+    private javax.swing.JTextField txtNumeroDiasC8;
     private javax.swing.JTextField txtNumeroProductosC1;
     // End of variables declaration//GEN-END:variables
 }

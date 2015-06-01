@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Date;
 import oracle.jdbc.driver.OracleDriver;
 
 /**
@@ -30,7 +31,7 @@ public class ConnectionDatabase {
             Class.forName("oracle.jdbc.driver.OracleDriver");
 
             con = DriverManager.getConnection(
-                    String.format("%s@%s:%s/%s", DRIVER_NAME, HOST, PORT, DB_NAME), 
+                    String.format("%s@%s:%s/%s", DRIVER_NAME, HOST, PORT, DB_NAME),
                     USERNAME,
                     PASSWORD);
             st = con.createStatement();
@@ -64,4 +65,139 @@ public class ConnectionDatabase {
     public boolean execute(String sql) throws SQLException {
         return st.execute(sql);
     }
+
+    ResultSet getProductos() throws SQLException {
+        return st.executeQuery("SELECT * FROM productos");
+    }
+
+    ResultSet getCountries() throws SQLException {
+        return st.executeQuery("SELECT DISTINCT client_country FROM clientes");
+    }
+
+    ResultSet getCostumers() throws SQLException {
+        return st.executeQuery("SELECT * FROM clientes");
+    }
+
+    /**
+     * Los primeros productos mas vendidos de una fecha a otra.
+     *
+     * @param desde
+     * @param hasta
+     * @param limit
+     * @return
+     * @throws SQLException
+     */
+    public ResultSet getConsulta1(Date desde, Date hasta, Integer limit) throws SQLException {
+        return st.executeQuery(
+                String.format("SELECT * FROM ventas WHERE sale_date BETWEEN %s AND %s GROUP BY product_id LIMIT %d",
+                        desde,
+                        hasta,
+                        limit
+                )
+        );
+    }
+
+    /**
+     * Categoria de productos mas vendidos de una fecha a otra.
+     *
+     * @param desde
+     * @param hasta
+     * @return
+     * @throws SQLException
+     */
+    public ResultSet getConsulta2(Date desde, Date hasta) throws SQLException {
+        return st.executeQuery("SELECT * FROM employees");
+    }
+
+    /**
+     * Clientes con más compras de un producto.
+     *
+     * @param product_id
+     * @return
+     * @throws SQLException
+     */
+    ResultSet getConsulta3(Object product_id) throws SQLException {
+        return st.executeQuery("SELECT * FROM productos");
+    }
+
+    /**
+     * Productos con más venta en un pais.
+     *
+     * @param country
+     * @return
+     * @throws SQLException
+     */
+    ResultSet getConsulta4(Object country) throws SQLException {
+        return st.executeQuery("SELECT * FROM productos");
+    }
+
+    /**
+     * Clientes con mas ordenes en un determinado tiempo.
+     *
+     * @param desde 
+     * @param hasta 
+     * @return
+     * @throws SQLException
+     */
+    public ResultSet getConsulta5(Date desde, Date hasta) throws SQLException {
+        return st.executeQuery("SELECT * FROM employees");
+    }
+
+    /**
+     * Lapso de tiempo de un cliente en pedir un producto.
+     *
+     * @param costumer_id
+     * @return
+     * @throws SQLException
+     */
+    ResultSet getConsulta6(Object costumer_id) throws SQLException {
+        return st.executeQuery("SELECT * FROM productos");
+    }
+
+    /**
+     * Producto que se queda mas tiempo en el almacén.
+     *
+     * @param numAlmacen
+     * @return
+     * @throws SQLException
+     */
+    ResultSet getConsulta7(Object numAlmacen) throws SQLException {
+        return st.executeQuery("SELECT * FROM productos");
+    }
+
+    /**
+     * Días de la semana con mayor número de ventas en un tiempo determinado.
+     *
+     * @param day
+     * @param desde 
+     * @param hasta 
+     * @return
+     * @throws SQLException
+     */
+    ResultSet getConsulta8(Date desde, Date hasta, Integer day) throws SQLException {
+        return st.executeQuery("SELECT * FROM productos");
+    }
+
+    /**
+     * Cuanto tiempo se queda inexistente un producto.
+     *
+     * @param product_id
+     * @return
+     * @throws SQLException
+     */
+    ResultSet getConsulta9(Object product_id) throws SQLException {
+        return st.executeQuery("SELECT * FROM productos");
+    }
+
+    /**
+     * Cantidad de ventas por país en un tiempo determinado.
+     *
+     * @param country
+     * @return
+     * @throws SQLException
+     */
+    ResultSet getConsulta10(Object country) throws SQLException {
+        return st.executeQuery("SELECT * FROM productos");
+    }
+
 }
