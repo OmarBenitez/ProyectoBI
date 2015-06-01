@@ -33,7 +33,8 @@ public class Main extends javax.swing.JFrame {
 
             ResultSet countries = conn.getCountries();
             tableCountriesC4.setModel(buildTableModel(countries));
-            tableCountriesC10.setModel(buildTableModel(countries));
+            ResultSet countries2 = conn.getCountries();
+            tableCountriesC10.setModel(buildTableModel(countries2));
             
             ResultSet costumers = conn.getCostumers();
             tableCostumersC6.setModel(buildTableModel(costumers));
@@ -786,6 +787,7 @@ public class Main extends javax.swing.JFrame {
                 ResultSet r = conn.getConsulta3(
                         tableProductsC3.getValueAt(tableProductsC3.getSelectedRow(), 0)
                 );
+                tableContent.setModel(buildTableModel(r));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -798,6 +800,7 @@ public class Main extends javax.swing.JFrame {
                 ResultSet r = conn.getConsulta4(
                         tableCountriesC4.getValueAt(tableCountriesC4.getSelectedRow(), 0)
                 );
+                tableContent.setModel(buildTableModel(r));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -822,6 +825,7 @@ public class Main extends javax.swing.JFrame {
                 ResultSet r = conn.getConsulta6(
                         tableCostumersC6.getValueAt(tableCostumersC6.getSelectedRow(), 0)
                 );
+                tableContent.setModel(buildTableModel(r));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -834,6 +838,7 @@ public class Main extends javax.swing.JFrame {
                 ResultSet r = conn.getConsulta7(
                         Integer.parseInt(txtNumAlmacenC6.getText())
                 );
+                tableContent.setModel(buildTableModel(r));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -858,6 +863,7 @@ public class Main extends javax.swing.JFrame {
                 ResultSet r = conn.getConsulta9(
                         tableProductsC9.getValueAt(tableProductsC9.getSelectedRow(), 0)
                 );
+                tableContent.setModel(buildTableModel(r));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -870,6 +876,7 @@ public class Main extends javax.swing.JFrame {
                 ResultSet r = conn.getConsulta10(
                         tableCountriesC10.getValueAt(tableCountriesC10.getSelectedRow(), 0)
                 );
+                tableContent.setModel(buildTableModel(r));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
