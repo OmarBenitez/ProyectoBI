@@ -29,12 +29,14 @@ public class Main extends javax.swing.JFrame {
 
             ResultSet prods = conn.getProductos();
             tableProductsC3.setModel(buildTableModel(prods));
-            tableProductsC9.setModel(buildTableModel(prods));
+            tableCountriesC9.setModel(buildTableModel(prods));
 
             ResultSet countries = conn.getCountries();
             tableCountriesC4.setModel(buildTableModel(countries));
             ResultSet countries2 = conn.getCountries();
             tableCountriesC10.setModel(buildTableModel(countries2));
+            ResultSet countries3 = conn.getCountries();
+            tableCountriesC9.setModel(buildTableModel(countries3));
 
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -108,7 +110,7 @@ public class Main extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jSeparator9 = new javax.swing.JSeparator();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tableProductsC9 = new javax.swing.JTable();
+        tableCountriesC9 = new javax.swing.JTable();
         btnConsulta9 = new javax.swing.JButton();
         pnlConsulta10 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
@@ -123,13 +125,13 @@ public class Main extends javax.swing.JFrame {
 
         tableContent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         scrollTablePanel.setViewportView(tableContent);
@@ -557,9 +559,9 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Consulta 8", pnlConsulta8);
 
-        jLabel20.setText("Cuanto tiempo se queda inexistente un producto.\t");
+        jLabel20.setText("Cantidad de productos mas vendido por categoria por pais.");
 
-        tableProductsC9.setModel(new javax.swing.table.DefaultTableModel(
+        tableCountriesC9.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -570,8 +572,8 @@ public class Main extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tableProductsC9.setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-        jScrollPane4.setViewportView(tableProductsC9);
+        tableCountriesC9.setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        jScrollPane4.setViewportView(tableCountriesC9);
 
         btnConsulta9.setText("Consultar");
         btnConsulta9.addActionListener(new java.awt.event.ActionListener() {
@@ -780,9 +782,9 @@ public class Main extends javax.swing.JFrame {
 
     private void btnConsulta9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsulta9ActionPerformed
         try {
-            if (tableProductsC9.getSelectedRow() != -1) {
+            if (tableCountriesC9.getSelectedRow() != -1) {
                 ResultSet r = conn.getConsulta9(
-                        tableProductsC9.getValueAt(tableProductsC9.getSelectedRow(), 0)
+                        tableCountriesC9.getValueAt(tableCountriesC9.getSelectedRow(), 0)
                 );
                 tableContent.setModel(buildTableModel(r));
             }
@@ -945,9 +947,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTable tableContent;
     private javax.swing.JTable tableCountriesC10;
     private javax.swing.JTable tableCountriesC4;
+    private javax.swing.JTable tableCountriesC9;
     private javax.swing.JPanel tablePanel;
     private javax.swing.JTable tableProductsC3;
-    private javax.swing.JTable tableProductsC9;
     private javax.swing.JTextField txtNumAlmacenC6;
     private javax.swing.JTextField txtYearC1;
     // End of variables declaration//GEN-END:variables

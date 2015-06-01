@@ -250,7 +250,7 @@ public class ConnectionDatabase {
     }
 
     /**
-     * Cuanto tiempo se queda inexistente un producto.
+     * Cantidad de productos mas vendido por categoria por pais.
      *
      * @param product_id
      * @return
