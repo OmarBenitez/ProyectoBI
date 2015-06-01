@@ -85,22 +85,21 @@ public class ConnectionDatabase {
      *
      * @param desde
      * @param hasta
-     * @param limit
+     * @param year
      * @return
      * @throws SQLException
      */
-    public ResultSet getConsulta1(Date desde, Date hasta, Integer limit) throws SQLException {
-        int dummyYear = 2007;
+    public ResultSet getConsulta1(String year) throws SQLException {
         return st.executeQuery(
-                String.format("SELECT pr.PRODUCT_NAME, COUNT(pr.PRODUCT_ID), SUM(ve.SALE_TOTAL) TOTAL_VENDIDO  "
-                        + "FROM PRODUCTOS pr "
-                        + "FULL OUTER JOIN TIEMPO ti "
-                        + "FULL OUTER JOIN VENTAS ve "
-                        + "ON ti.FECHA = ve.FECHA "
-                        + "ON pr.PRODUCT_ID = ve.PRODUCT_ID "
-                        + "WHERE ti.YEAR_NUMBER = %d "
+                String.format("SELECT pr.PRODUCT_NAME, COUNT(pr.PRODUCT_ID), SUM(ve.SALE_TOTAL) TOTAL_VENDIDO \n"
+                        + "FROM PRODUCTOS pr\n"
+                        + "FULL OUTER JOIN TIEMPO ti\n"
+                        + "FULL OUTER JOIN VENTAS ve\n"
+                        + "ON ti.FECHA = ve.FECHA\n"
+                        + "ON pr.PRODUCT_ID = ve.PRODUCT_ID\n"
+                        + "WHERE ti.YEAR_NUMBER = %s\n"
                         + "GROUP BY ROLLUP (pr.PRODUCT_NAME)",
-                        dummyYear
+                        year
                 )
         );
     }
@@ -201,14 +200,13 @@ public class ConnectionDatabase {
      * @return
      * @throws SQLException
      */
-    ResultSet getConsulta6(Object costumer_id) throws SQLException {
-        //No recibe parámetros
-        return st.executeQuery(String.format("SELECT cl.CLIENT_NAME, SUM(ve.SALE_TOTAL) TOTAL_VENDIDO,  "
-                + "LAG (cl.CLIENT_NAME) OVER (ORDER BY SUM(ve.SALE_TOTAL)) AS VENDEDOR_DESEMPEÑO_MENOR,  "
-                + "LEAD (cl.CLIENT_NAME) OVER (ORDER BY SUM(ve.SALE_TOTAL)) AS VENDEDOR_DESEMPEÑO_MAYOR "
-                + "FROM VENTAS ve "
-                + "JOIN CLIENTES cl "
-                + "ON ve.CLIENT_ID = cl.CLIENT_ID "
+    ResultSet getConsulta6() throws SQLException {
+        return st.executeQuery(String.format("SELECT cl.CLIENT_NAME, SUM(ve.SALE_TOTAL) TOTAL_VENDIDO, \n"
+                + "LAG (cl.CLIENT_NAME) OVER (ORDER BY SUM(ve.SALE_TOTAL)) AS VENDEDOR_DESEMPEÑO_MENOR, \n"
+                + "LEAD (cl.CLIENT_NAME) OVER (ORDER BY SUM(ve.SALE_TOTAL)) AS VENDEDOR_DESEMPEÑO_MAYOR\n"
+                + "FROM VENTAS ve\n"
+                + "JOIN CLIENTES cl\n"
+                + "ON ve.CLIENT_ID = cl.CLIENT_ID\n"
                 + "GROUP BY cl.CLIENT_NAME"));
     }
 
@@ -240,16 +238,15 @@ public class ConnectionDatabase {
      * @return
      * @throws SQLException
      */
-    ResultSet getConsulta8(Date desde, Date hasta, Integer day) throws SQLException {
-        String dummyMonth = "Ënero";
-        return st.executeQuery(String.format("SELECT cl.CLIENT_NAME, SUM(ve.SALE_TOTAL) TOTAL_VENTAS, ti.MONTH_NAME as MES "
-                + "FROM TIEMPO ti "
-                + "JOIN VENTAS ve "
-                + "ON ve.FECHA = ti.FECHA "
-                + "JOIN CLIENTES cl "
-                + "ON ve.CLIENT_ID = cl.CLIENT_ID "
-                + "WHERE ti.MONTH_NAME LIKE '%s' "
-                + "GROUP BY GROUPING SETS ((cl.CLIENT_NAME, ti.MONTH_NAME))", dummyMonth));
+    ResultSet getConsulta8(String month) throws SQLException {
+        return st.executeQuery(String.format("SELECT cl.CLIENT_NAME, SUM(ve.SALE_TOTAL) TOTAL_VENTAS, ti.MONTH_NAME as MES\n"
+                + "FROM TIEMPO ti\n"
+                + "JOIN VENTAS ve\n"
+                + "ON ve.FECHA = ti.FECHA\n"
+                + "JOIN CLIENTES cl\n"
+                + "ON ve.CLIENT_ID = cl.CLIENT_ID\n"
+                + "WHERE ti.MONTH_NAME LIKE '%s'\n"
+                + "GROUP BY GROUPING SETS ((cl.CLIENT_NAME, ti.MONTH_NAME))", month));
     }
 
     /**

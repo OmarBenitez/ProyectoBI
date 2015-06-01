@@ -35,9 +35,6 @@ public class Main extends javax.swing.JFrame {
             tableCountriesC4.setModel(buildTableModel(countries));
             ResultSet countries2 = conn.getCountries();
             tableCountriesC10.setModel(buildTableModel(countries2));
-            
-            ResultSet costumers = conn.getCostumers();
-            tableCostumersC6.setModel(buildTableModel(costumers));
 
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -60,13 +57,9 @@ public class Main extends javax.swing.JFrame {
         pnlConsulta1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnConsulta1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        fechaDesdeConsulta1 = new datechooser.beans.DateChooserCombo();
-        jLabel3 = new javax.swing.JLabel();
-        fechaHastaConsulta1 = new datechooser.beans.DateChooserCombo();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
-        txtNumeroProductosC1 = new javax.swing.JTextField();
+        txtYearC1 = new javax.swing.JTextField();
         pnlConsulta2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -98,8 +91,6 @@ public class Main extends javax.swing.JFrame {
         pnlConsulta6 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tableCostumersC6 = new javax.swing.JTable();
         btnConsulta6 = new javax.swing.JButton();
         pnlConsulta7 = new javax.swing.JPanel();
         btnConsulta7 = new javax.swing.JButton();
@@ -109,14 +100,10 @@ public class Main extends javax.swing.JFrame {
         txtNumAlmacenC6 = new javax.swing.JTextField();
         pnlConsulta8 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        fechaDesdeConsulta8 = new datechooser.beans.DateChooserCombo();
-        jLabel18 = new javax.swing.JLabel();
-        fechaHastaConsulta8 = new datechooser.beans.DateChooserCombo();
         jSeparator8 = new javax.swing.JSeparator();
         jLabel19 = new javax.swing.JLabel();
-        txtNumeroDiasC8 = new javax.swing.JTextField();
         btnConsulta8 = new javax.swing.JButton();
+        comboMesC8 = new javax.swing.JComboBox();
         pnlConsulta9 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jSeparator9 = new javax.swing.JSeparator();
@@ -158,7 +145,7 @@ public class Main extends javax.swing.JFrame {
             .addComponent(scrollTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
         );
 
-        jLabel1.setText("Los primeros productos mas vendidos de una fecha a otra");
+        jLabel1.setText("Los primeros productos mas vendidos de una fecha a otra.");
 
         btnConsulta1.setText("Consultar");
         btnConsulta1.addActionListener(new java.awt.event.ActionListener() {
@@ -167,16 +154,15 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Desde:");
-
-        jLabel3.setText("Hasta:");
-
-        jLabel4.setText("Número de productos:");
+        jLabel4.setText("Año:");
 
         javax.swing.GroupLayout pnlConsulta1Layout = new javax.swing.GroupLayout(pnlConsulta1);
         pnlConsulta1.setLayout(pnlConsulta1Layout);
         pnlConsulta1Layout.setHorizontalGroup(
             pnlConsulta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlConsulta1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnConsulta1))
             .addGroup(pnlConsulta1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlConsulta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,22 +171,11 @@ public class Main extends javax.swing.JFrame {
                         .addGroup(pnlConsulta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(pnlConsulta1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(fechaHastaConsulta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlConsulta1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(fechaDesdeConsulta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNumeroProductosC1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 194, Short.MAX_VALUE)))
+                                .addComponent(txtYearC1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 316, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlConsulta1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnConsulta1))
         );
         pnlConsulta1Layout.setVerticalGroup(
             pnlConsulta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,15 +186,9 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlConsulta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(fechaDesdeConsulta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNumeroProductosC1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtYearC1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlConsulta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(fechaHastaConsulta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
                 .addComponent(btnConsulta1))
         );
 
@@ -452,20 +421,7 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Consulta 5", pnlConsulta5);
 
-        jLabel13.setText("Lapso de tiempo de un cliente en pedir un producto.");
-
-        tableCostumersC6.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane3.setViewportView(tableCostumersC6);
+        jLabel13.setText("Comparación de cantidad de ventas entre clientes.");
 
         btnConsulta6.setText("Consultar");
         btnConsulta6.addActionListener(new java.awt.event.ActionListener() {
@@ -479,17 +435,16 @@ public class Main extends javax.swing.JFrame {
         pnlConsulta6Layout.setHorizontalGroup(
             pnlConsulta6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlConsulta6Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(pnlConsulta6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlConsulta6Layout.createSequentialGroup()
+                        .addGap(598, 598, 598)
+                        .addComponent(btnConsulta6))
                     .addGroup(pnlConsulta6Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
                         .addGroup(pnlConsulta6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13)
                             .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlConsulta6Layout.createSequentialGroup()
-                        .addGap(592, 592, 592)
-                        .addComponent(btnConsulta6))
-                    .addComponent(jScrollPane3))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnlConsulta6Layout.setVerticalGroup(
@@ -499,9 +454,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
                 .addComponent(btnConsulta6))
         );
 
@@ -514,7 +467,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        jLabel14.setText("Producto que se queda mas tiempo en el almacén.");
+        jLabel14.setText("Los productos más vendidos en un almacén.");
 
         jLabel15.setText("Número de almacén:");
 
@@ -553,13 +506,9 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Consulta 7", pnlConsulta7);
 
-        jLabel16.setText("Días de la semana con mayor número de ventas en un tiempo determinado.");
+        jLabel16.setText("Total de las ventas por mes para cada uno de los clientes.");
 
-        jLabel17.setText("Desde:");
-
-        jLabel18.setText("Hasta:");
-
-        jLabel19.setText("Número de día:");
+        jLabel19.setText("Mes:");
 
         btnConsulta8.setText("Consultar");
         btnConsulta8.addActionListener(new java.awt.event.ActionListener() {
@@ -568,10 +517,15 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        comboMesC8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+
         javax.swing.GroupLayout pnlConsulta8Layout = new javax.swing.GroupLayout(pnlConsulta8);
         pnlConsulta8.setLayout(pnlConsulta8Layout);
         pnlConsulta8Layout.setHorizontalGroup(
             pnlConsulta8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlConsulta8Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnConsulta8))
             .addGroup(pnlConsulta8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlConsulta8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -580,22 +534,11 @@ public class Main extends javax.swing.JFrame {
                         .addGroup(pnlConsulta8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel16)
                             .addGroup(pnlConsulta8Layout.createSequentialGroup()
-                                .addComponent(jLabel18)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(fechaHastaConsulta8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlConsulta8Layout.createSequentialGroup()
-                                .addComponent(jLabel17)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(fechaDesdeConsulta8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
                                 .addComponent(jLabel19)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNumeroDiasC8, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 211, Short.MAX_VALUE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(comboMesC8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 321, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlConsulta8Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnConsulta8))
         );
         pnlConsulta8Layout.setVerticalGroup(
             pnlConsulta8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -606,15 +549,9 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlConsulta8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel17)
-                    .addComponent(fechaDesdeConsulta8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNumeroDiasC8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel19))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlConsulta8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel18)
-                    .addComponent(fechaHastaConsulta8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                    .addComponent(jLabel19)
+                    .addComponent(comboMesC8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
                 .addComponent(btnConsulta8))
         );
 
@@ -675,7 +612,7 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Consulta 9", pnlConsulta9);
 
-        jLabel21.setText("Cantidad de ventas por país en un tiempo determinado.");
+        jLabel21.setText("Cantidad de ventas por país por año.");
 
         tableCountriesC10.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -758,9 +695,8 @@ public class Main extends javax.swing.JFrame {
     private void btnConsulta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsulta1ActionPerformed
         try {
             ResultSet r = conn.getConsulta1(
-                    new Date(fechaDesdeConsulta1.getCurrent().getTime().getTime()),
-                    new Date(fechaHastaConsulta1.getCurrent().getTime().getTime()),
-                    Integer.parseInt(txtNumeroProductosC1.getText()));
+                    txtYearC1.getText()
+            );
             tableContent.setModel(buildTableModel(r));
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -821,12 +757,9 @@ public class Main extends javax.swing.JFrame {
 
     private void btnConsulta6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsulta6ActionPerformed
         try {
-            if (tableCostumersC6.getSelectedRow() != -1) {
-                ResultSet r = conn.getConsulta6(
-                        tableCostumersC6.getValueAt(tableCostumersC6.getSelectedRow(), 0)
-                );
-                tableContent.setModel(buildTableModel(r));
-            }
+            ResultSet r = conn.getConsulta6();
+            tableContent.setModel(buildTableModel(r));
+
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -844,18 +777,6 @@ public class Main extends javax.swing.JFrame {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnConsulta7ActionPerformed
-
-    private void btnConsulta8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsulta8ActionPerformed
-        try {
-            ResultSet r = conn.getConsulta8(
-                    new Date(fechaDesdeConsulta8.getCurrent().getTime().getTime()),
-                    new Date(fechaHastaConsulta8.getCurrent().getTime().getTime()),
-                    Integer.parseInt(txtNumeroDiasC8.getText()));
-            tableContent.setModel(buildTableModel(r));
-        } catch (SQLException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnConsulta8ActionPerformed
 
     private void btnConsulta9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsulta9ActionPerformed
         try {
@@ -882,6 +803,17 @@ public class Main extends javax.swing.JFrame {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnConsulta11ActionPerformed
+
+    private void btnConsulta8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsulta8ActionPerformed
+        try {
+            ResultSet r = conn.getConsulta8(
+                    comboMesC8.getSelectedItem().toString()
+            );
+            tableContent.setModel(buildTableModel(r));
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnConsulta8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -920,10 +852,10 @@ public class Main extends javax.swing.JFrame {
 
     /**
      * Construye el TableModel a partir de un ResultSet de la base de datos.
-     * 
+     *
      * @param rs
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static DefaultTableModel buildTableModel(ResultSet rs)
             throws SQLException {
@@ -962,14 +894,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton btnConsulta7;
     private javax.swing.JButton btnConsulta8;
     private javax.swing.JButton btnConsulta9;
-    private datechooser.beans.DateChooserCombo fechaDesdeConsulta1;
+    private javax.swing.JComboBox comboMesC8;
     private datechooser.beans.DateChooserCombo fechaDesdeConsulta2;
     private datechooser.beans.DateChooserCombo fechaDesdeConsulta5;
-    private datechooser.beans.DateChooserCombo fechaDesdeConsulta8;
-    private datechooser.beans.DateChooserCombo fechaHastaConsulta1;
     private datechooser.beans.DateChooserCombo fechaHastaConsulta2;
     private datechooser.beans.DateChooserCombo fechaHastaConsulta5;
-    private datechooser.beans.DateChooserCombo fechaHastaConsulta8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -978,13 +907,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -993,7 +918,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
@@ -1019,14 +943,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel pnlConsulta9;
     private javax.swing.JScrollPane scrollTablePanel;
     private javax.swing.JTable tableContent;
-    private javax.swing.JTable tableCostumersC6;
     private javax.swing.JTable tableCountriesC10;
     private javax.swing.JTable tableCountriesC4;
     private javax.swing.JPanel tablePanel;
     private javax.swing.JTable tableProductsC3;
     private javax.swing.JTable tableProductsC9;
     private javax.swing.JTextField txtNumAlmacenC6;
-    private javax.swing.JTextField txtNumeroDiasC8;
-    private javax.swing.JTextField txtNumeroProductosC1;
+    private javax.swing.JTextField txtYearC1;
     // End of variables declaration//GEN-END:variables
 }
