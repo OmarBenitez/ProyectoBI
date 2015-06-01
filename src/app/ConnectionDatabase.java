@@ -19,11 +19,11 @@ public class ConnectionDatabase {
     public static ResultSet rs;
 
     private static final String DRIVER_NAME = "jdbc:oracle:thin:";
-    private static final String HOST = "192.168.100.6";
+    private static final String HOST = "localhost";
     private static final String PORT = "1521";
-    private static final String DB_NAME = "orcl";
+    private static final String DB_NAME = "orcl.lan";
     private static final String USERNAME = "oe";
-    private static final String PASSWORD = "12346678";
+    private static final String PASSWORD = "12345678";
 
     public void conectar() {
 //Conectar con la base de datos
